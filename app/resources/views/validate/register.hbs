@@ -1,0 +1,21 @@
+<div id="register-container">
+    <div class="wrapper">
+        <h1>
+            Vui lòng điền thông tin của bạn vào biểu mẫu bên dưới để tiếp tục.
+        </h1>
+        <form action="/profile" method="POST">
+            <input type="text" required name="name" id="name" placeholder="Tên của bạn">
+            <input type="email" required name="email" id="email" placeholder="Địa chỉ email của bạn">
+            <input type="text" required name="username" id="username" placeholder="Tên tài khoản">
+            <input type="password" required name="password" id="password" placeholder="Mật khẩu">
+            <input type="password" required name="passwordConfirm" id="passwordConfirm"
+                placeholder="Xác nhận lại mật khẩu">
+            <button type="submit">Đăng ký</button>
+        </form>
+        {{#if message}}
+        <h1>{{message}}</h1>
+        {{/if}}
+    </div>
+</div>
+{{!-- cài đặc npm i bcryptjs --save để mã hóa băm mật khẩu --}}
+{{!-- cài đặc npm i cookie-parser jsonwebtoken --save để phân tích cú pháp cookie--}}

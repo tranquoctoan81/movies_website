@@ -1,0 +1,31 @@
+{
+  "name": "do_an_1_web_xem_phim",
+  "version": "1.0.0",
+  "description": "do an 1",
+  "main": "main.js",
+  "scripts": {
+    "beautiful": "prettier --single-quote --tab-width 4 --trailing-comma all --write app/**/*.{js,json,scss}",
+    "start": "nodemon --inspect main.js",
+    "watch": "node-sass --watch app/resources/scss/app.scss app/public/css/app.css",
+    "watchMovie": "node-sass --watch app/resources/scss/watchMovie.scss app/public/css/watchMovie.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tranquoctoan",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.3",
+    "jsonwebtoken": "^8.5.1",
+    "method-override": "^3.0.0",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "husky": "^7.0.2",
+    "lint-staged": "^11.1.2",
+    "node-sass": "^6.0.1",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.4.1"
+  }
+}

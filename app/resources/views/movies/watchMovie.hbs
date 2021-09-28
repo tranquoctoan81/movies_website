@@ -1,0 +1,84 @@
+<div style="background-color:#1b2d3c" class="wrapper">
+    {{#each data}}
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0"
+        nonce="BuBJ8DYY"></script>
+    <div class="container">
+        <div class="header-content">
+            <div class="thumb">
+                <img src="{{this.linkImage}}" alt="">
+            </div>
+            <div class="content-wrapper">
+                <h2 class="title">{{this.name}}</h2>
+                <div class="path">
+                    <span>
+                        <a href="">Phim mới »</a>
+                        <a class="country" href="">Mỹ »</a>
+                        <span>{{this.name}}</span>
+                    </span>
+                </div>
+                <div class="content-wrapper-bottom">
+                    <div id="btn-control">
+                        <a href="#trailer-container">Trailer</a>
+                        <a id="btn-watch" href="#movie">Xem Phim</a>
+                    </div>
+                    <div class="info">
+                        <p>đạo diễn:...</p>
+                        <p>thời gian:...</p>
+                        <p>quốc gia:...</p>
+                        <p>phát hành: 2021</p>
+                        <p>chất lượng: bản đẹp</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="movie" class="movie">
+            <video controls poster="{{this.linkImage}}" width="100%" height="400px" src="{{this.linkVideo}}"></video>
+        </div>
+        <div class="description-movie">
+            <h2>Thông Tin:</h2>
+            <span class="description">{{this.description}}</span>
+            <p class="show-description btn-description">Xem thêm...</p>
+            <p style="display:none" class="none-description  btn-description">Ẩn xem thêm</p>
+        </div>
+        <div id="trailer-container" class="trailer-container">
+            <h1>Trailer phim
+                <p>{{this.name}}</p>
+            </h1>
+            <div class="trailer">
+                <iframe width="100%" height="435" src="https://www.youtube.com/embed/{{this.idTrailer}}"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+        <div style="display:block;text-align:center" class="fb-comments" data-href="http://localhost:3000/{{this.slug}}"
+            data-width="" data-numposts="5"></div>
+    </div>
+    {{/each}}
+</div>
+
+<script>
+    const btnWatch = document.getElementById('btn-watch')
+    const movie = document.querySelector('.movie')
+    const descriptionMovie = document.querySelector('.description-movie')
+    const description = document.querySelector('.description')
+    btnWatch.onclick = (e) => {
+        e.preventDefault();
+        movie.classList.toggle('active')
+        descriptionMovie.classList.toggle('active')
+    }
+
+    const showDes = document.querySelector('.show-description')
+    const noneDes = document.querySelector('.none-description')
+    showDes.onclick = () => {
+        description.classList.add('show')
+        showDes.style.display = 'none'
+        noneDes.style.display = 'block'
+    }
+    noneDes.onclick = () => {
+        description.classList.remove('show')
+        noneDes.style.display = 'none'
+        showDes.style.display = 'block'
+    }
+</script>

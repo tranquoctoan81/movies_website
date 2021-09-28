@@ -1,0 +1,60 @@
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #666;
+}
+
+::-webkit-scrollbar-track {
+    background: #0C222F;
+}
+
+header #container .menu .dropdown > li:nth-child(4):hover .sub-menu,
+header #container .menu .dropdown > li:nth-child(3):hover .sub-menu,
+header #container .menu .dropdown > li:nth-child(2):hover .sub-menu{
+    top:100%;
+    opacity: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+#container .nominated-movie .moninated-content .moninated-content-item:hover .thumbnail img{
+    transform: scale(1.2);
+    filter: brightness(100%);
+}
+
+#container .hot-series-movie .series-movie .tab-movie .series-movie-content .series-movie-content-first .moninated-content-item .thumbnail:hover img{
+    transform: scale(1.2);
+    filter: brightness(100%);
+}
+
+#container .hot-series-movie .series-movie .tab-movie .series-movie-content .series-movie-content-next .moninated-content-item:hover{
+    background-color: #1b2d3c;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    filter: brightness(150%);
+}
+#btnOnScrollTop {
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    right: 43px;
+    z-index: 99;
+    font-size: 8rem;
+    border: none;
+    outline: none;
+    color: #d3531a;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+
+#btnOnScrollTop:hover {
+  opacity: .5;
+}
+
+#admin-container .left-page-admin .left-item:hover .dropdown {
+    display: block;
+    margin: 0;
+    opacity: 1;
+}

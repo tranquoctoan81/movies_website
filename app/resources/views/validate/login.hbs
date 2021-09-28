@@ -1,0 +1,16 @@
+<div id="register-container">
+    <div class="wrapper">
+        <h1>
+            Vui lòng điền thông tin của bạn vào biểu mẫu bên dưới để tiếp tục.
+        </h1>
+        <form action="/login-handle" method="POST">
+            <input type="text" required name="username" id="name" placeholder="Tên tài khoản">
+            <input type="password" required name="password" id="name" placeholder="Mật khẩu">
+            <input type="password" required name="passwordConfirm" id="name" placeholder="Xác nhận lại mật khẩu">
+            <button type="submit">Đăng nhập</button>
+        </form>
+        {{#if message}}
+        <h1>{{message}}</h1>
+        {{/if}}
+    </div>
+</div>

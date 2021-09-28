@@ -1,0 +1,120 @@
+<header>
+    <div id="container">
+        <div style="display:none" class="menu-mobile-icon">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="logo-container">
+            <a href="/">PHIMMOI<i>.CUATOI</i></a>
+        </div>
+        <nav class="menu">
+            <ul class="dropdown">
+                <li><a href="/">TRANG CHỦ</a></li>
+                <li>
+                    <a href="#">NĂM <span class="arrow">&#9660;</span></a>
+                    <ul class="sub-menu year-film">
+                        <li><a href="">năm 2022</a></li>
+                        <li><a href="">năm 2021</a></li>
+                        <li><a href="">năm 2020</a></li>
+                        <li><a href="">năm 2019</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">THẺ LOẠI <span class="arrow">&#9660;</span></a>
+                    <ul class="sub-menu">
+                        <li><a href="">Tâm Lý</a></li>
+                        <li><a href="">hành động</a></li>
+                        <li><a href="">viễn tưởng</a></li>
+                        <li><a href="">hoạt hình</a></li>
+                        <li><a href="">kinh dị</a></li>
+                        <li><a href="">hài hước</a></li>
+                        <li><a href="">hình sự</a></li>
+                        <li><a href="">võ thuật</a></li>
+                        <li><a href="">cổ trang</a></li>
+                        <li><a href="">phim ma</a></li>
+                        <li><a href="">tình cảm</a></li>
+                        <li><a href="">thể thao - âm nhạc</a></li>
+                        <li><a href="">thần thoại</a></li>
+                        <li><a href="">tài liệu</a></li>
+                        <li><a href="">phiêu lưu</a></li>
+                        <li><a href="">gia đình</a></li>
+                        <li><a href="">chiến tranh</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">QUỐC GIA <span class="arrow">&#9660;</span></a>
+                    <ul class="sub-menu">
+                        <li><a href="">việt nam</a></li>
+                        <li><a href="">ấn độ</a></li>
+                        <li><a href="">mỹ</a></li>
+                        <li><a href="">hồng kông</a></li>
+                        <li><a href="">nhật bản</a></li>
+                        <li><a href="">trung quốc</a></li>
+                        <li><a href="">đài loan</a></li>
+                        <li><a href="">thái lan</a></li>
+                        <li><a href="">hàn quốc</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">PHIM LẺ</a></li>
+                <li><a href="#">PHIM BỘ</a></li>
+            </ul>
+        </nav>
+        <div class="icon">
+            <input type="text" placeholder="Tên phim...">
+            <div class="search-btn">
+                <i class="fas fa-search btn" id="search-btn"></i>
+            </div>
+            <div class="login-btn-container">
+                <i class="fas fa-user btn" id="login-btn"></i>
+            </div>
+        </div>
+        <div class="menu-login-right">
+            <div id="close-menu-btn">
+                <i class="fas fa-times close-menu-btn"></i>
+            </div>
+            <div class="menu-nav">
+                <a href="/login">Đăng nhập</a>
+                <a href="/register">Đăng ký</a>
+                <a href="">Sửa thông tin</a>
+                <a href="">Đăng Xuất</a>
+            </div>
+        </div>
+    </div>
+</header>
+<script>
+    const menuMobileIcon = document.querySelector('.menu-mobile-icon')
+    const menuMobile = document.querySelector('.menu')
+    const subMenuLi = document.querySelectorAll('#container .menu .dropdown > li')
+    const searchInput = document.querySelector('#container .icon input')
+    const searchBtn = document.querySelector('.search-btn')
+    const loginBtn = document.querySelector('.login-btn-container')
+    const menuLoginRight = document.querySelector('.menu-login-right')
+    const closeMenuBtn = document.getElementById('close-menu-btn')
+    function check() {
+        menuMobileIcon.onclick = () => {
+            menuMobile.classList.toggle('active')
+        }
+        searchBtn.onclick = function () {
+            searchInput.classList.toggle('active')
+        }
+    }
+    check()
+    window.onscroll = function () { scrollFunction() };
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("btnOnScrollTop").style.display = "block";
+        } else {
+            document.getElementById("btnOnScrollTop").style.display = "none";
+        }
+    }
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
+    loginBtn.onclick = () => {
+        menuLoginRight.classList.add('active');
+    }
+    closeMenuBtn.onclick = () => {
+        menuLoginRight.classList.remove('active');
+    }
+</script>

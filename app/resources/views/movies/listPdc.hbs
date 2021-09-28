@@ -1,0 +1,21 @@
+<div id="list-movies">
+    <div class="title">
+        <div class="icon-film"><i class="fas fa-film"></i></div>
+        <a href="">DANH SÁCH PHIM ĐỀ CỬ</a>
+    </div>
+    <div class="list-container">
+        <div class="list-item">
+            {{#each movies}}
+            <a href="/{{this.slug}}" class="moninated-content-item">
+                <div class="thumbnail">
+                    <img src="{{this.linkImage}}" alt="">
+                </div>
+                <div class="description">
+                    <div class="title">{{this.name}}</div>
+                    <div class="author">{{this.author}}</div>
+                </div>
+            </a>
+            {{/each}}
+        </div>
+    </div>
+</div>
