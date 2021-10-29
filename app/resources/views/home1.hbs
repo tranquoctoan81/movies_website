@@ -1,7 +1,4 @@
 <div id="container">
-    <div class="search-sm">
-        <input type="text" placeholder="Tìm kiếm phim...">
-    </div>
     <div class="nominated-movie">
         <div class="moninated-top">
             <div class="title">
@@ -28,25 +25,15 @@
         <div class="moninated-top moninated-bottom">
             <div class="title">
                 <div class="icon-film"><i class="fas fa-film"></i></div>
-                <a href="/movie/:id" href="">PHIM MƠI CẬP NHẬT</a>
+                <a href="/movie/:id" href="">PHIM MỚI CẬP NHẬT</a>
             </div>
             <div class="see-all">
-                <a href="/danh-sach/phim-moi-cap-nhat">XEM TẤT CẢ</a>
+                <a href=""></a>
             </div>
         </div>
         <div class="movie-bottom">
-            <div class="moninated-content">
-                {{#each movies}}
-                <a href="/{{this.slug}}" class="moninated-content-item">
-                    <div class="thumbnail">
-                        <img src="{{this.linkImage}}" alt="">
-                    </div>
-                    <div class="description">
-                        <div class="title">{{this.name}}</div>
-                        <div class="author">{{this.author}}</div>
-                    </div>
-                </a>
-                {{/each}}
+            <div id="moninated-content" class="moninated-content">
+
             </div>
         </div>
     </div>
@@ -54,172 +41,11 @@
         <div class="series-movie">
             <div class="series-movie-left tab-movie">
                 <div class="series-movie-title">
-                    <h3>PHIM LẺ XEM NHIỀU NHẤT</h3>
+                    <h3>PHIM XEM NHIỀU NHẤT</h3>
                 </div>
                 <div class="series-movie-content">
-                    <div class="series-movie-content-first">
-                        <a href="/movie/:id" class="moninated-content-item">
-                            <div class="thumbnail">
-                                <img src="img/nominated/img4.jpg" alt="">
-                            </div>
-                            <div class="description">
-                                <div class="title">Loki Thần Lừa Lọc (Phần 1)</div>
-                                <div class="author">Loki Season 1</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="series-movie-content-next">
-                        <div class="moninated-content-item">
-                            <div class="thumbnail">
-                                <img src="img/nominated/img1.jpg" alt="">
-                            </div>
-                            <div class="content">
-                                <h2 class="title">Loki Thần Lừa Lọc (Phần 1)</h2>
-                                <h5 class="author">Loki Season 1</h5>
-                            </div>
-                            <div class="practice">
-                                <i id="star" class="fas fa-star"></i>
-                                <span>HOT</span>
-                            </div>
-                        </div>
-                        <div class="moninated-content-item">
-                            <div class="thumbnail">
-                                <img src="img/nominated/img1.jpg" alt="">
-                            </div>
-                            <div class="content">
-                                <h2 class="title">Loki Thần Lừa Lọc (Phần 1)</h2>
-                                <h5 class="author">Loki Season 1</h5>
-                            </div>
-                            <div class="practice">
-                                <i id="star" class="fas fa-star"></i>
-                                <span>HOT</span>
-                            </div>
-                        </div>
-                        <div class="moninated-content-item">
-                            <div class="thumbnail">
-                                <img src="img/nominated/img1.jpg" alt="">
-                            </div>
-                            <div class="content">
-                                <h2 class="title">Loki Thần Lừa Lọc (Phần 1)</h2>
-                                <h5 class="author">Loki Season 1</h5>
-                            </div>
-                            <div class="practice">
-                                <i id="star" class="fas fa-star"></i>
-                                <span>HOT</span>
-                            </div>
-                        </div>
-                        <div class="moninated-content-item">
-                            <div class="thumbnail">
-                                <img src="img/nominated/img1.jpg" alt="">
-                            </div>
-                            <div class="content">
-                                <h2 class="title">Loki Thần Lừa Lọc (Phần 1)</h2>
-                                <h5 class="author">Loki Season 1</h5>
-                            </div>
-                            <div class="practice">
-                                <i id="star" class="fas fa-star"></i>
-                                <span>HOT</span>
-                            </div>
-                        </div>
-                        <div class="moninated-content-item">
-                            <div class="thumbnail">
-                                <img src="img/nominated/img1.jpg" alt="">
-                            </div>
-                            <div class="content">
-                                <h2 class="title">Loki Thần Lừa Lọc (Phần 1)</h2>
-                                <h5 class="author">Loki Season 1</h5>
-                            </div>
-                            <div class="practice">
-                                <i id="star" class="fas fa-star"></i>
-                                <span>HOT</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="series-movie-right tab-movie">
-                <div class="series-movie-title">
-                    <h3>PHIM BỘ XEM NHIỀU NHẤT</h3>
-                </div>
-                <div class="series-movie-content">
-                    <div class="series-movie-content-first">
-                        <a href="/movie/:id" class="moninated-content-item">
-                            <div class="thumbnail">
-                                <img src="img/nominated/img4.jpg" alt="">
-                            </div>
-                            <div class="description">
-                                <div class="title">Loki Thần Lừa Lọc (Phần 1)</div>
-                                <div class="author">Loki Season 1</div>
-                            </div>
-                        </a>
+                    <div class="series-movie-content-next series_odd_movie">
 
-                    </div>
-                    <div class="series-movie-content-next">
-                        <div class="moninated-content-item">
-                            <div class="thumbnail">
-                                <img src="img/nominated/img1.jpg" alt="">
-                            </div>
-                            <div class="content">
-                                <h2 class="title">Loki Thần Lừa Lọc (Phần 1)</h2>
-                                <h5 class="author">Loki Season 1</h5>
-                            </div>
-                            <div class="practice">
-                                <i id="star" class="fas fa-star"></i>
-                                <span>HOT</span>
-                            </div>
-                        </div>
-                        <div class="moninated-content-item">
-                            <div class="thumbnail">
-                                <img src="img/nominated/img1.jpg" alt="">
-                            </div>
-                            <div class="content">
-                                <h2 class="title">Loki Thần Lừa Lọc (Phần 1)</h2>
-                                <h5 class="author">Loki Season 1</h5>
-                            </div>
-                            <div class="practice">
-                                <i id="star" class="fas fa-star"></i>
-                                <span>HOT</span>
-                            </div>
-                        </div>
-                        <div class="moninated-content-item">
-                            <div class="thumbnail">
-                                <img src="img/nominated/img1.jpg" alt="">
-                            </div>
-                            <div class="content">
-                                <h2 class="title">Loki Thần Lừa Lọc (Phần 1)</h2>
-                                <h5 class="author">Loki Season 1</h5>
-                            </div>
-                            <div class="practice">
-                                <i id="star" class="fas fa-star"></i>
-                                <span>HOT</span>
-                            </div>
-                        </div>
-                        <div class="moninated-content-item">
-                            <div class="thumbnail">
-                                <img src="img/nominated/img1.jpg" alt="">
-                            </div>
-                            <div class="content">
-                                <h2 class="title">Loki Thần Lừa Lọc (Phần 1)</h2>
-                                <h5 class="author">Loki Season 1</h5>
-                            </div>
-                            <div class="practice">
-                                <i id="star" class="fas fa-star"></i>
-                                <span>HOT</span>
-                            </div>
-                        </div>
-                        <div class="moninated-content-item">
-                            <div class="thumbnail">
-                                <img src="img/nominated/img1.jpg" alt="">
-                            </div>
-                            <div class="content">
-                                <h2 class="title">Loki Thần Lừa Lọc (Phần 1)</h2>
-                                <h5 class="author">Loki Season 1</h5>
-                            </div>
-                            <div class="practice">
-                                <i id="star" class="fas fa-star"></i>
-                                <span>HOT</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -234,4 +60,52 @@
             console.log(e.target)
         }
     })
+
+    const moninatedContent = document.getElementById('moninated-content');
+    const urlD = `http://localhost:3000/json-desc`
+    fetch(urlD)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (dataS) {
+            var hbs = dataS.map(function (data) {
+                return `
+                        <a href="/${data.slug}" class="moninated-content-item">
+                            <div class="thumbnail">
+                                <img src="${data.linkImage}" alt="">
+                            </div>
+                            <div class="description">
+                                <div class="title">${data.name}</div>
+                            </div>
+                        </a>
+                    `
+            })
+            moninatedContent.innerHTML = hbs.join('')
+        });
+
+    const urlO = 'http://localhost:3000/json-series-old'
+    fetch(urlO)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (series) {
+            var hbsO = series.map(function (movieItem) {
+                return `
+                    <div class="moninated-content-item">
+                        <div class="thumbnail">
+                            <a href="${movieItem.slug}"><img src="${movieItem.linkImage}" alt=""></a>
+                        </div>
+                        <a href="${movieItem.slug}" class="content">
+                            <h2 class="title">${movieItem.name}</h2>
+                            <h5 class="author">Lượt Xem: ${movieItem.lượt_xem}</h5 >
+                        </a >
+                        <div class="practice">
+                            <i id="star" class="fas fa-star"></i>
+                            <span>HOT</span>
+                        </div>
+                    </div >
+                    `
+            })
+            document.querySelector('.series_odd_movie').innerHTML = hbsO.join('')
+        });
 </script>

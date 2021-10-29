@@ -1,0 +1,47 @@
+<div id="update-info-container">
+    <div class="box-left">
+        <h3>Thông tin tài khoản</h3>
+        <h3>Tất cả thông tin liên quan đến tài khoản</h3>
+    </div>
+    <div class="box-right">
+        {{#each username}}
+        <form method="POST" action="/update-info/handle/{{this.username}}?_method=PUT" id="form-update">
+            <div class="name-info">
+                <div class="userName">
+                    <h3>Username</h3>
+                    <input name="username" value="{{this.username}}" type="text">
+                </div>
+                <div class="name">
+                    <h3>Name</h3>
+                    <input name="name" value="{{this.name}}" type="text">
+                </div>
+            </div>
+            <div class="email">
+                <h3>Email</h3>
+                <input name="email" value="{{this.email}}" type="email">
+            </div>
+            <div class="password">
+                <h3>Password</h3>
+                <input name="password" value="{{this.password}}" type="password">
+            </div>
+            {{#if message}}
+            <h1>{{message}}</h1>
+            {{/if}}
+            <div class="btn">
+                <input type="submit" value="Save">
+            </div>
+        </form>
+        {{/each}}
+    </div>
+</div>
+<style>
+    #app {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #footer {
+        margin-top: auto;
+    }
+</style>

@@ -1,0 +1,172 @@
+<a class="back" href="/admin/movie-manager/">back</a>
+<div id="container-update">
+    <form method="post" class="wrapper">
+        <div class="boxed">
+            <h2>Chọn Tên Phim</h2>
+            <ul>
+                {{#each data}}
+                <li>
+                    <input class="movie-name" data-index="{{this.movieID}}" type="checkbox">
+                    <h4>{{this.name}}</h4>
+                </li>
+                {{/each}}
+            </ul>
+            <a id="btnSubmitForm" href="">Thêm quốc gia vào phim</a>
+        </div>
+        <div class="boxed">
+            <h2>Chọn Quốc Gia</h2>
+            <ul>
+                {{#each country}}
+                <li>
+                    <input class="actor-name" data-index="{{this.countryID}}" type="checkbox">
+                    <h4>{{this.name}}</h4>
+                    <div class="icon-handle-admin">
+                        <div data-index="{{this.countryID}}" class="icon-edit">
+                            <i class="far fa-edit"></i>
+                        </div>
+                        <div data-index="{{this.countryID}}" class="icon_delete">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+            <a class="addActors" href="">Thêm Mới Quốc Gia</a>
+        </div>
+    </form>
+    <div class="box-add-actor">
+        <div class="icon-close-box"><i class="fas fa-times-circle"></i></div>
+        <form method="POST" action="/admin/add-new-country">
+            <div class="title">
+                <h2>Thêm mới quốc gia</h2>
+            </div>
+            <div class="item">
+                <label for="name">Tên quốc gia</label>
+                <input required value="" name="name" type="text" id="name">
+            </div>
+            <button id="btnAddActor" type="submit">Thêm</button>
+        </form>
+    </div>
+    <div class="box-edit">
+        <div class="icon-close-edit-box"><i class="fas fa-times-circle"></i></div>
+        <form method="POST" action="/admin/handle-update/">
+            <div class="title">
+                <h2>Chỉnh sửa quốc gia</h2>
+            </div>
+            <div class="item">
+                <label for="name">Tên Quốc Gia</label>
+                <input required value="" class="value-form-edit" name="name" type="text" id="name">
+            </div>
+            <button id="btnEditHandle" type="submit">Cập nhật</button>
+        </form>
+    </div>
+</div>
+<form id="form_delete_hidden" method="post"></form>
+<form id="form_edit_hidden" method="post"></form>
+<script>
+    let valueIndexEdit;
+    const btnEditHandle = document.getElementById("btnEditHandle")
+    const formEditHidden = document.getElementById("form_edit_hidden")
+    const iconCloseEditBox = document.querySelector(".icon-close-edit-box")
+    const iconEdit = document.querySelectorAll('.icon-edit')
+    const boxEdit = document.querySelector('.box-edit')
+    iconEdit.forEach(icon => {
+        icon.onclick = () => {
+            boxEdit.classList.add("active")
+            valueIndexEdit = icon.getAttribute('data-index')
+        }
+        iconCloseEditBox.onclick = () => {
+            boxEdit.classList.remove("active")
+        }
+    })
+    btnEditHandle.onclick = (e) => {
+        e.preventDefault()
+        const nameEdit = 'country';
+        const valueFormEdit = document.querySelector('.value-form-edit').value;
+        formEditHidden.action = `/admin/handle-form-action/edit-actor-cat-country/${valueIndexEdit}/${valueFormEdit}/${nameEdit}?_method=PUT`;
+        formEditHidden.submit()
+    }
+
+
+    let index
+    const iconDelete = document.querySelectorAll('.icon_delete')
+    const formDeleteHidden = document.getElementById('form_delete_hidden')
+    iconDelete.forEach(icon => {
+        icon.onclick = () => {
+            const check = confirm('ban co chac xoa quoc gia nay khong?')
+            if (check == true) {
+                index = icon.getAttribute('data-index')
+                formDeleteHidden.action = `/admin/handle-form-action/delete-country/${index}?_method=DELETE`;
+                formDeleteHidden.submit()
+            } else {
+                console.log('false')
+            }
+        }
+    })
+    let movieIndex
+    let actorIndex
+    const movieNameArr = document.querySelectorAll('.movie-name')
+    movieNameArr.forEach(movieName => {
+        movieName.onclick = () => {
+            if (movieName.checked == true) {
+                movieIndex = movieName.getAttribute('data-index')
+            } else {
+                movieIndex = ''
+            }
+        }
+    })
+    const actorNameArr = document.querySelectorAll('.actor-name')
+    actorNameArr.forEach(actorName => {
+        actorName.onclick = () => {
+            if (actorName.checked == true) {
+                actorIndex = actorName.getAttribute('data-index')
+            }
+            else {
+                actorIndex = ''
+            }
+        }
+    })
+    const wrapper = document.querySelector('.wrapper')
+    const btnSubmitForm = document.getElementById("btnSubmitForm")
+    btnSubmitForm.onclick = (e) => {
+        e.preventDefault();
+        if (!movieIndex || !actorIndex) {
+            return alert("Vui lòng chọn Phim và Quốc Gia")
+        }
+        wrapper.action = `/admin/add-country/${movieIndex}/${actorIndex}`
+        wrapper.submit();
+    }
+    const btnAddActor = document.getElementById("btnAddActor")
+    const iconTimes = document.querySelector(".icon-close-box")
+    const boxAddActor = document.querySelector(".box-add-actor")
+    const addActors = document.querySelector(".addActors")
+    addActors.onclick = (e) => {
+        e.preventDefault();
+        boxAddActor.classList.add("active")
+    }
+    iconTimes.onclick = () => {
+        boxAddActor.classList.remove("active")
+    }
+</script>
+<style>
+    .back {
+        display: inline-block;
+        color: #fff;
+        padding: .9rem;
+        background-color: #d3531a;
+        font-size: 1.7rem;
+        border-radius: 1rem;
+        margin-left: .7rem;
+        margin: 1rem;
+    }
+
+    #app {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #footer {
+        display: none;
+    }
+</style>

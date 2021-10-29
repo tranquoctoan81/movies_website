@@ -3,7 +3,7 @@ const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'webxemphim',
+    database: 'movie_website',
 });
 
 function connect() {

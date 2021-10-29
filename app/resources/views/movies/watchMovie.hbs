@@ -1,8 +1,9 @@
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=589034595884825&autoLogAppEvents=1"
+    nonce="fDGgHmm0"></script>
 <div style="background-color:#1b2d3c" class="wrapper">
     {{#each data}}
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0"
-        nonce="BuBJ8DYY"></script>
     <div class="container">
         <div class="header-content">
             <div class="thumb">
@@ -23,15 +24,28 @@
                         <a id="btn-watch" href="#movie">Xem Phim</a>
                     </div>
                     <div class="info">
-                        <p>đạo diễn:...</p>
-                        <p>thời gian:...</p>
-                        <p>quốc gia:...</p>
-                        <p>phát hành: 2021</p>
+                        <p>đạo diễn: N/A</p>
+                        <p>thời gian: {{this.time}} Phút</p>
+                        <p>quốc gia: {{this.nation}}</p>
+                        <p>phát hành: {{this.year}}</p>
+                        <p>diễn viên: {{this.actor}}...</p>
+                        <p>thể loại: {{this.cat}}</p>
                         <p>chất lượng: bản đẹp</p>
                     </div>
                 </div>
             </div>
         </div>
+        <h2 style="font-size:3rem;color:#bbc6ce;margin-bottom:2rem" class="">Diễn viên nổi bật:</h2>
+        <div class="profile_actors">
+            <div class="swiper container_profile">
+                <div class="swiper-wrapper actor-wrapper">
+
+
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+
         <div id="movie" class="movie">
             <video controls poster="{{this.linkImage}}" width="100%" height="400px" src="{{this.linkVideo}}"></video>
         </div>
@@ -51,13 +65,48 @@
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
             </div>
+            {{!-- <div style="display:inline-block;text-align:center;width:100%" class="fb-comments"
+                data-href="http://localhost:3000" data-width="" data-numposts="5"></div> --}}
+            <div style="display:inline-block;text-align:center;width:100%" class="fb-comments"
+                data-href="http://localhost:3000/gg" data-width="" data-numposts="5">
+            </div>
         </div>
-        <div style="display:block;text-align:center" class="fb-comments" data-href="http://localhost:3000/{{this.slug}}"
-            data-width="" data-numposts="5"></div>
     </div>
     {{/each}}
 </div>
+<script>
+    const actorWrapper = document.querySelector('.actor-wrapper')
+    const actorItem = document.querySelector('.actor-item')
+    async function fetchActorJSON() {
+        const response = await fetch('http://localhost:3000/json-actors');
+        const arrActor = await response.json();
+        return arrActor;
+    }
+    fetchActorJSON()
+        .then(function (arrActor) {
+            var html = arrActor.map(function (actor) {
+                return `
+                        <div class="swiper-slide actor-item">
+                            <div class="story">
+                                <div class="name">
+                                    <h3>${actor.name}</h3>
+                                    <h5>Diễn viên ${actor.actorCountry}</h5>
+                                </div>
+                                <div class="desc">
+                                    <p>${actor.story}</p>
+                                </div>
+                            </div>
+                            <div class="image">
+                                <img src="${actor.image}"alt="">
+                            </div>
+                        </div>
+                    `
+            })
+            actorWrapper.innerHTML = html.join('')
+        })
+        .catch(console.log('lỗi'))
 
+</script>
 <script>
     const btnWatch = document.getElementById('btn-watch')
     const movie = document.querySelector('.movie')
@@ -81,4 +130,6 @@
         noneDes.style.display = 'none'
         showDes.style.display = 'block'
     }
+
+
 </script>

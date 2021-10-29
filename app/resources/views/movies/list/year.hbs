@@ -1,0 +1,44 @@
+<div id="list-movies">
+    <div class="title">
+        <div class="icon-film"><i class="fas fa-film"></i></div>
+        <h4><a class="title_header" href="">Phim mới</a> » {{year}}</h4>
+    </div>
+    <div class="list-container">
+        <div class="list-item">
+            {{#each movies}}
+            <a href="/{{this.slug}}" class="moninated-content-item">
+                <div class="thumbnail">
+                    <img src="{{this.linkImage}}" alt="">
+                </div>
+                <div class="description">
+                    <div class="title">{{this.name}}</div>
+                    <div class="author">{{this.author}}</div>
+                </div>
+            </a>
+            {{else}}
+            <h3 class="category_empty">Phim chưa được cập nhật</h3>
+            {{/each}}
+        </div>
+    </div>
+</div>
+<style>
+    .category_empty {
+        font-size: 3rem;
+        color: #d3531a;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #list-movies {}
+
+    .title_header {
+        color: #4f6b85 !important;
+    }
+
+    h4 {
+        color: #9b9b9c;
+    }
+</style>

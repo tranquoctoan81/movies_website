@@ -2,6 +2,9 @@
     html{
         font-size:53.5%;
     }
+    #list-movies {
+        /* height: 81.6vh !important; */
+    }
     header #container{
         display: flex;
         justify-content: space-between;
@@ -45,6 +48,7 @@
     }
     header #container .icon input{
         /* display:none; */
+        padding: 2.5rem !important;
         position:absolute;
         color: #fff !important;
         font-size:2.5rem;
@@ -57,22 +61,41 @@
         opacity: 0;
         transition:all 1s ease-in-out;
     }
+    header #container .icon .search .search-input{
+        position: initial !important;
+    }
+    header #container .icon .search .search-input .autoCom-box {
+        position: absolute;
+        top: 160%;
+        left: 0;
+        width: 100%;
+    }
     header #container .icon input.active{
         top: 100%;
         opacity: 1;
         z-index: 101;
     }
     header #container .icon input:focus{
-        opacity: .8;
+        opacity: 1.5;
     }
     header #container .icon {
         font-size: 3rem;
+    }
+    .button {
+        width: 70% !important;
     }
 }
 @media (max-width:1024px) {
     html{
         font-size:50.5%;
     }
+    #update-info-container .box-right,
+    #update-info-container .box-left {
+        width: 100%;
+    }
+    #update-info-container,
+    #footer .wrapper,
+    #list-movies,
     #container .hot-series-movie .series-movie,
     #container .nominated-movie {
         width: 800px;
@@ -97,15 +120,34 @@
     .wrapper .container .header-content .thumb img {
         height: 70rem !important;
     }
+    #list-movies .list-container .list-item {
+        --columns: 3;
+    }
+    #register-container .wrapper {
+        width: 700px;
+        padding: 30% 5rem 2rem;
+    }
+    #update-info-container {
+        padding: 4rem 2rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
     
 }
 @media (max-width:991px) {
     html{
         font-size:48.5%;
     }
+    #update-info-container,
+    #footer .wrapper,
+    #list-movies,
     #container .hot-series-movie .series-movie,
     #container .nominated-movie {
         width: 780px;
+    }
+    #create-container>form {
+        width: 100% !important;
     }
 }
 @media (max-width:768px) {
@@ -118,6 +160,12 @@
     header #container{
         padding: 1.7rem 3.2rem;
     }
+    #list-movies {
+        /* height: 67.6vh !important; */
+    }
+    #update-info-container,
+    #footer .wrapper,
+    #list-movies,
     #container .nominated-movie {
         width: 700px;
     }
@@ -168,11 +216,39 @@
         width: 90%;
         margin:0 auto;
     }
+    #list-movies .list-container .list-item {
+        --columns: 2;
+    }
+    #footer .wrapper{
+        flex-direction: column;
+    }
+    #container-update {
+        width: 100%;
+        padding: 2rem;
+    }
+    #container-update .box-add-actor{
+        width: 50%;
+    }
 
 }
 @media (max-width:700px) {
     html{
         font-size:44.5%;
+    }
+    #update-info-container,
+    #list-movies{
+        width: 100%;
+    }
+    #footer .wrapper{
+        width: 100%;
+    }
+    #footer .wrapper .box-right {
+        padding: 0;
+        margin-top:2rem;
+    }
+    #footer .wrapper .box-right .item {
+        flex-wrap: wrap;
+        width: calc(100% / 8);
     }
     header #container{
         padding: 1.4rem 2rem;
@@ -191,7 +267,8 @@
     #container .nominated-movie .moninated-content{
         gap: .4rem;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        /* grid-template-rows: 1fr 1fr 1fr 1fr 1fr; */
+        grid-template-rows: .5fr .5fr .5fr .5fr .5fr;
     }
     #container .nominated-movie .moninated-content .moninated-content-item .thumbnail {
         height: 100%;
@@ -243,7 +320,7 @@
         align-items: center;
     }
     .wrapper .container .header-content .thumb {
-        width: 72% !important;
+        width: 80% !important;
     }
     .wrapper .container .header-content .content-wrapper {
         width: 80% !important;
@@ -260,4 +337,43 @@
         margin: 0 auto;
         width: 100% !important;
     }
+    #list-movies .list-container .list-item {
+        --columns: 1;
+    }
+    #register-container .wrapper {
+        width: 350px;
+        padding: 30% 5rem 2rem;
+    }
+    .button {
+        width: 100% !important;
+    }
 }
+
+@media (max-width:456px){
+    .wrapper .container .profile_actors{
+        width: 100% !important;
+    }
+    #list-movies {
+        /* height: 45.6vh !important; */
+        position: relative;
+    }
+    #app {
+        height:auto !important;
+    }
+    #container-update {
+        height: 88vh;
+        margin-top: 20%;
+    }
+    #container-update .box-add-actor.active {
+        top: 28%;
+    }
+    #container-update .box-add-actor {
+        width: 90%;
+    }
+}
+@media (max-width:375px){
+    #app {
+        /* height:100vh !important; */
+    }
+}
+

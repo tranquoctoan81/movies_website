@@ -6,7 +6,6 @@
         <form action="/login-handle" method="POST">
             <input type="text" required name="username" id="name" placeholder="Tên tài khoản">
             <input type="password" required name="password" id="name" placeholder="Mật khẩu">
-            <input type="password" required name="passwordConfirm" id="name" placeholder="Xác nhận lại mật khẩu">
             <button type="submit">Đăng nhập</button>
         </form>
         {{#if message}}
@@ -14,3 +13,8 @@
         {{/if}}
     </div>
 </div>
+<style>
+    #footer {
+        display: none;
+    }
+</style>

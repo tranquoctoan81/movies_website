@@ -1,13 +1,16 @@
 <div id="admin-home-page">
-    <div class="title">
-        <h2 class="text">trang chủ admin</h2>
-    </div>
-    <div class="button">
-        <div class="btn">
-            <a href="/admin/user-manager">quản lí users</a>
+    <div class="wrapper">
+        <div class="title">
+            <h2 class="text">trang chủ admin</h2>
         </div>
-        <div class="btn">
-            <a href="/admin/movie-manager">quản lí movie</a>
+        <div class="button">
+            <div class="btn">
+                <a href="/admin/user-manager">quản lí users</a>
+            </div>
+            <div class="btn">
+                <a href="/admin/movie-manager">quản lí movie</a>
+
+            </div>
         </div>
     </div>
 </div>
@@ -22,6 +25,14 @@
         top: 0;
         left: 0;
         padding: 10% 8%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .wrapper {
+        width: 90%;
+        background: transparent;
     }
 
     .title {
@@ -31,6 +42,7 @@
     }
 
     .text {
+        text-align: center;
         font-family: sans-serif;
         display: inline-block;
         font-size: 5rem;
@@ -51,14 +63,21 @@
     }
 
     .btn a {
+        width: 100%;
+        display: block;
         font-size: 3rem;
         color: #fff;
         text-transform: capitalize;
+        text-align: center;
         font-weight: 600;
         padding: 2rem;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         background: linear-gradient(90deg, #d3531a, #4d8fc5);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+    }
+
+    .btn {
+        position: relative;
     }
 </style>

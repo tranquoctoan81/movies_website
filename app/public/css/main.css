@@ -58,3 +58,16 @@ header #container .menu .dropdown > li:nth-child(2):hover .sub-menu{
     margin: 0;
     opacity: 1;
 }
+
+#container .nominated-movie .moninated-content .moninated-content-item:first-child,
+#container .nominated-movie .moninated-content .moninated-content-item:nth-child(2),
+#container .nominated-movie .moninated-content .moninated-content-item:nth-child(3),
+#container .nominated-movie .moninated-content .moninated-content-item:nth-child(4),
+#container .nominated-movie .moninated-content .moninated-content-item:nth-child(5),
+#container .nominated-movie .moninated-content .moninated-content-item:nth-child(6),
+#container .nominated-movie .moninated-content .moninated-content-item:nth-child(7),
+#container .nominated-movie .moninated-content .moninated-content-item:nth-child(8),
+#container .nominated-movie .moninated-content .moninated-content-item:nth-child(9){
+    display:block;
+}
+
