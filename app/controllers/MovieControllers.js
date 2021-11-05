@@ -2,7 +2,10 @@ require('dotenv').config()
 const { connect, connection } = require('../models/database'); //connect mysql
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const { sendCustomEmail } = require('../../middleware/nodemailerServer')
 let slugs
+let random
+let emailForget
 class MovieController {
     //GET /home1  page được render từ database
     home(req, res, next) {
@@ -219,7 +222,7 @@ class MovieController {
 
                     }
                 } else {
-                    console.log('Sai mật khẩu')
+                    const user = req.body.username
                     return res.render('validate/login', {
                         message: 'Sai mật khẩu'
                     })
@@ -326,6 +329,49 @@ class MovieController {
             if (err) console.log(err)
             return res.redirect('/')
         })
+    }
+
+    forgotPassword(req, res, next) {
+        res.render('validate/forgot_password')
+    }
+    forgotPasswordSecret(req, res) {
+        emailForget = req.body.email
+        connect();
+        connection.query("SELECT users.* FROM users WHERE users.email =?", emailForget, (err, result) => {
+            if (result.length > 0) {
+                random = Math.floor(Math.random() * 1000000)
+                sendCustomEmail(emailForget, "Khôi phục tài khoản", `Mã bí mật sẽ hết hạn sau 15 phút: ${random}`)
+                res.render('validate/forgot_password_secret', { emailForget })
+            } else {
+                return res.render('validate/forgot_password', {
+                    message: 'Email này chưa đăng ký tài khoản'
+                })
+            }
+        })
+    }
+    forgotPasswordLassStep(req, res) {
+        const secret = req.body.secret;
+        if (secret == random) {
+            res.render('validate/change_password')
+        } else {
+            res.json('khong trung')
+        }
+    }
+
+    async changePassword(req, res) {
+        const { password, confirm_password } = req.body
+        if (password === confirm_password) {
+            const hashedPassword = await bcrypt.hash(password, 10)
+            connect();
+            connection.query(`UPDATE users SET password = ? WHERE users.email = ?`, [hashedPassword, emailForget], (err) => {
+                if (err) console.log(err)
+                return res.redirect('/login')
+            })
+        } else {
+            return res.render('validate/change_password', {
+                message: 'Email này chưa đăng ký tài khoản'
+            })
+        }
     }
 
 }

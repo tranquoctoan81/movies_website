@@ -6,7 +6,10 @@
         <form action="/login-handle" method="POST">
             <input type="text" required name="username" id="name" placeholder="Tên tài khoản">
             <input type="password" required name="password" id="name" placeholder="Mật khẩu">
-            <button type="submit">Đăng nhập</button>
+            <div class="handle-form-login">
+                <button type="submit">Đăng nhập</button>
+                <a class="forgot_password" href="/login/forgot-password-handle">Quên mật khẩu?</a>
+            </div>
         </form>
         {{#if message}}
         <h1>{{message}}</h1>

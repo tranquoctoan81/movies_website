@@ -25,6 +25,10 @@ router.get('/before', movieController.before);
 router.get('/register', movieController.register);
 router.post('/profile', movieController.profile);
 router.get('/login', movieController.login);
+router.get('/login/forgot-password-handle', movieController.forgotPassword)
+router.post('/login/forgot-password-handle/secret', movieController.forgotPasswordSecret)
+router.post('/login/forgot-password-handle/last-step', movieController.forgotPasswordLassStep)
+router.post('/login/change-password', movieController.changePassword)
 router.get('/logout', movieController.logout);
 router.post('/login-handle', movieController.loginHandle);
 router.get('/:slug', cookieJwtAuth, updateViews, movieController.watchMovie);

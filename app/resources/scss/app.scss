@@ -571,21 +571,31 @@ header {
                 font-weight:400;
                 background-color:#1b2d3c7c;
             }
-            button{
-                width: 45%;
-                height:5rem;
-                background-color: $color-primary2;
-                padding: 1rem;
-                margin: 2rem auto 0;
-                border: none;
-                outline: none;
-                border-radius:.6rem;
-                font-size:2.5rem;
-                display:block;
-                color: rgb(228, 222, 222);
-                cursor: pointer;
-                &:hover {
-                    opacity: .6;
+            .handle-form-login{
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                padding: 2rem 0;
+                margin: 1rem 0;
+                button{
+                    width: 45%;
+                    height:5rem;
+                    background-color: $color-primary2;
+                    border: none;
+                    outline: none;
+                    border-radius:.6rem;
+                    font-size:2.5rem;
+                    display:inline-block;
+                    color: rgb(228, 222, 222);
+                    cursor: pointer;
+                    &:hover {
+                        opacity: .6;
+                    }
+                }
+                .forgot_password{
+                    display: inline-block;
+                    font-size:2rem;
+                    color: $color-orange;
                 }
             }
         }

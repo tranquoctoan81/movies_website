@@ -406,21 +406,29 @@ header {
       color: #1281d6;
       font-weight: 400;
       background-color: #1b2d3c7c; }
-    #register-container .wrapper form button {
-      width: 45%;
-      height: 5rem;
-      background-color: #0c1924;
-      padding: 1rem;
-      margin: 2rem auto 0;
-      border: none;
-      outline: none;
-      border-radius: .6rem;
-      font-size: 2.5rem;
-      display: block;
-      color: #e4dede;
-      cursor: pointer; }
-      #register-container .wrapper form button:hover {
-        opacity: .6; }
+    #register-container .wrapper form .handle-form-login {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 2rem 0;
+      margin: 1rem 0; }
+      #register-container .wrapper form .handle-form-login button {
+        width: 45%;
+        height: 5rem;
+        background-color: #0c1924;
+        border: none;
+        outline: none;
+        border-radius: .6rem;
+        font-size: 2.5rem;
+        display: inline-block;
+        color: #e4dede;
+        cursor: pointer; }
+        #register-container .wrapper form .handle-form-login button:hover {
+          opacity: .6; }
+      #register-container .wrapper form .handle-form-login .forgot_password {
+        display: inline-block;
+        font-size: 2rem;
+        color: #d3531a; }
 
 #list-movies {
   min-height: 100vh;

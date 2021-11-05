@@ -19,6 +19,7 @@ app.use('/admin/:slug', express.static(path.join(__dirname, 'app/public')));
 app.use('/year/:year', express.static(path.join(__dirname, 'app/public')));
 app.use('/update-info/:name', express.static(path.join(__dirname, 'app/public')));
 app.use('/country/:country', express.static(path.join(__dirname, 'app/public')));
+app.use('/login/forgot-password-handle', express.static(path.join(__dirname, 'app/public')));
 app.use('/categories/:catName', express.static(path.join(__dirname, 'app/public')));
 
 
