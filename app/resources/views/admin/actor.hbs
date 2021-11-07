@@ -149,7 +149,7 @@
         if (!movieIndex || !actorIndex) {
             return alert("Vui lòng chọn Phim và Diễn Viên")
         }
-        wrapper.action = `/ admin / add - actor / ${movieIndex} /${actorIndex}`
+        wrapper.action = `/admin/add-actor/${movieIndex}/${actorIndex}`
         wrapper.submit();
     }
     const btnAddActor = document.getElementById("btnAddActor")
