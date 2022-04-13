@@ -6,9 +6,11 @@ const { sendCustomEmail } = require('../../middleware/nodemailerServer')
 let slugs
 let random
 let emailForget
+let userIDHome
 class MovieController {
     //GET /home1  page được render từ database
     home(req, res, next) {
+        // userIDHome = req.userID
         connect();
         connection.query('SELECT * FROM movie', function (err, movies, fields) {
             if (!err) {
@@ -51,9 +53,14 @@ class MovieController {
         var slug = req.params.slug
         slugs = slug
         connect()
-        connection.query("SELECT movie.*, country.name as nation, GROUP_CONCAT(DISTINCT category.name) as cat, GROUP_CONCAT(DISTINCT actors.name) as actor from movie left join production_country on movie.movieID = production_country.movieID left join country on production_country.countryID = country.countryID left join movie_category ON movie.movieID = movie_category.movieID LEFT JOIN category ON category.categoryID = movie_category.categoryID LEFT JOIN movie_actors ON movie.movieID = movie_actors.movieID LEFT JOIN actors ON actors.actorsID = movie_actors.actorsID WHERE movie.slug = ? ", slug, function (err, data, fields) {
+        connection.query("SELECT movie.*, country.name as nation, GROUP_CONCAT(DISTINCT category.name) as cat, GROUP_CONCAT(DISTINCT actors.name) as actor, COUNT(appreciate.movieID) AS reviews, AVG(appreciate.mark) AS mark from movie left join production_country on movie.movieID = production_country.movieID left join country on production_country.countryID = country.countryID left join movie_category ON movie.movieID = movie_category.movieID LEFT JOIN category ON category.categoryID = movie_category.categoryID LEFT JOIN movie_actors ON movie.movieID = movie_actors.movieID LEFT JOIN actors ON actors.actorsID = movie_actors.actorsID LEFT JOIN appreciate ON appreciate.movieID = movie.movieID WHERE movie.slug = ? GROUP BY appreciate.movieID", slug, function (err, data, fields) {
             if (!err) {
-                res.render('movies/watchMovie', { data });
+                let arr = { ...data }
+                connection.query('Select COUNT(appreciate.usersID) AS reviews , AVG(appreciate.mark) AS mark from appreciate WHERE movieID = ?', arr[0].movieID, function (err, data1, fields) {
+                    arr[0].reviews = data1[0].reviews;
+                    arr[0].mark = (Math.round(arr[0].mark * 100) / 100)
+                    res.render('movies/watchMovie', { arr });
+                })
             } else {
                 console.log(err);
             }
@@ -136,6 +143,29 @@ class MovieController {
             }
         });
     }
+    jsonRecommendedMovies(req, res) {
+        connect();
+        if (req.userID) {
+            connection.query('SELECT appreciate.movieID, COUNT(appreciate.movieID) as TONGLUOTDANHGIA FROM appreciate WHERE appreciate.usersID = ? GROUP BY appreciate.movieID ORDER BY TONGLUOTDANHGIA DESC LIMIT 1', req.userID, function (err, data, fields) {
+                if (!err) {
+                    connection.query('SELECT movie_category.categoryID as cate FROM movie_category LEFT JOIN category ON category.categoryID = movie_category.categoryID WHERE movie_category.movieID = ?', data[0].movieID, (err, data1, fields) => {
+                        let idCate = []
+                        data1.map(item => {
+                            idCate.push(JSON.stringify(item.cate))
+                        })
+                        const newData = `(${idCate.toString()})`
+                        connection.query(`SELECT movie.*, COUNT(users_movie.movieID) AS lượt_xem FROM movie LEFT JOIN movie_category ON movie_category.movieID = movie.movieID LEFT OUTER JOIN users_movie ON movie.movieID = users_movie.movieID WHERE movie_category.categoryID IN ${newData} GROUP BY movie.movieID`, (arr, movie) => {
+                            res.json(movie)
+                        })
+                    })
+                } else {
+                    console.log(err);
+                }
+            });
+        } else {
+            res.json(123)
+        }
+    }
 
 
     //[GET] /register
@@ -185,6 +215,7 @@ class MovieController {
                 if (err) {
                     console.log(err)
                 } else {
+                    // alert('Đăng ký thành công')
                     return res.redirect('/login')
                 }
             })
@@ -372,6 +403,14 @@ class MovieController {
                 message: 'Email này chưa đăng ký tài khoản'
             })
         }
+    }
+
+    appreciate(req, res) {
+        connect();
+        connection.query("INSERT INTO appreciate SET ?", { movieID: req.body.movieID, usersID: req.userID, mark: req.body.mark }, (err, result) => {
+            if (err) console.log(err)
+            res.redirect('back')
+        })
     }
 
 }

@@ -3,11 +3,49 @@
     src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=589034595884825&autoLogAppEvents=1"
     nonce="fDGgHmm0"></script>
 <div style="background-color:#1b2d3c" class="wrapper">
-    {{#each data}}
+    {{#each arr}}
     <div class="container">
         <div class="header-content">
             <div class="thumb">
                 <img src="{{this.linkImage}}" alt="">
+                <div class="appreciate">
+                    <div class="star" id="star_wrapper">
+                        <div class="appreciate_icon"><img alt="" data-index="1" class="star_icon"
+                                src="https://biphim.co/rating2/images/star-off.png">
+                        </div>
+                        <div class="appreciate_icon"><img alt="" data-index="2" class="star_icon"
+                                src="https://biphim.co/rating2/images/star-off.png">
+                        </div>
+                        <div class="appreciate_icon"><img alt="" data-index="3" class="star_icon"
+                                src="https://biphim.co/rating2/images/star-off.png">
+                        </div>
+                        <div class="appreciate_icon"><img alt="" data-index="4" class="star_icon"
+                                src="https://biphim.co/rating2/images/star-off.png">
+                        </div>
+                        <div class="appreciate_icon"><img alt="" data-index="5" class="star_icon"
+                                src="https://biphim.co/rating2/images/star-off.png">
+                        </div>
+                        <div class="appreciate_icon"><img alt="" data-index="6" class="star_icon"
+                                src="https://biphim.co/rating2/images/star-off.png">
+                        </div>
+                        <div class="appreciate_icon"><img alt="" data-index="7" class="star_icon"
+                                src="https://biphim.co/rating2/images/star-off.png">
+                        </div>
+                        <div class="appreciate_icon"><img alt="" data-index="8" class="star_icon"
+                                src="https://biphim.co/rating2/images/star-off.png">
+                        </div>
+                        <div class="appreciate_icon"><img alt="" data-index="9" class="star_icon"
+                                src="https://biphim.co/rating2/images/star-off.png">
+                        </div>
+                        <div class="appreciate_icon"><img alt="" data-index="10" class="star_icon"
+                                src="https://biphim.co/rating2/images/star-off.png">
+                        </div>
+                        <input name="score" type="hidden" value="8.75">
+                    </div>
+                    <div class="mark">
+                        <span>({{this.mark}} điểm / {{this.reviews}} lượt)</span>
+                    </div>
+                </div>
             </div>
             <div class="content-wrapper">
                 <h2 class="title">{{this.name}}</h2>
@@ -69,13 +107,60 @@
             {{!-- <div style="display:inline-block;text-align:center;width:100%" class="fb-comments"
                 data-href="http://localhost:3000" data-width="" data-numposts="5"></div> --}}
             <div style="display:inline-block;text-align:center;width:100%" class="fb-comments"
-                data-href="http://localhost:3000/gg" data-width="" data-numposts="5">
+                data-href="http://localhost:3000/{{this.movieID}}" data-width="" data-numposts="5">
             </div>
         </div>
     </div>
-    {{/each}}
+
 </div>
+<form>
+    <input class="formHiddenMark" type="hidden" value="{{this.mark}}">
+</form>
+<form class="submit_appreciate" method="POST">
+    <input type="hidden" class="appreciate_movieID" value="{{this.movieID}}" name="movieID">
+    <input type="hidden" class="appreciate_mark" value="" name="mark">
+</form>
+{{/each}}
 <script>
+    const appreciate_icons = document.querySelectorAll('.appreciate_icon');
+    const star_icons = document.querySelectorAll('.star_icon');
+    const star_wrapper = document.getElementById('star_wrapper');
+    const submit_appreciate = document.querySelector('.submit_appreciate')
+    const appreciate_mark = document.querySelector('.appreciate_mark')
+    const formHiddenMark = document.querySelector('.formHiddenMark')
+    window.onload = function () {
+        const handleMark = Math.floor(formHiddenMark.value)
+        const handleOnStar = (handleMark) => {
+            const arr = [...star_icons]
+            const newArr = arr.slice(0, handleMark)
+            newArr.forEach(item => {
+                item.src = 'https://biphim.co/rating2/images/star-on.png';
+            })
+        }
+        handleOnStar(handleMark)
+        star_icons.forEach(icon => {
+            const icon_id = icon.getAttribute('data-index')
+            icon.onmouseover = function (e) {
+                icon.src = 'https://biphim.co/rating2/images/star-on.png';
+                handleOnStar(icon_id)
+            };
+            icon.onclick = (e) => {
+                e.preventDefault();
+                appreciate_mark.value = icon_id
+                submit_appreciate.action = '/appreciate';
+                submit_appreciate.submit()
+            }
+
+            star_wrapper.onmouseleave = () => {
+                star_icons.forEach(icon => {
+                    icon.src = 'https://biphim.co/rating2/images/star-off.png';
+                })
+                handleOnStar(handleMark)
+            }
+        })
+    };
+
+
     const actorWrapper = document.querySelector('.actor-wrapper')
     const actorItem = document.querySelector('.actor-item')
     async function fetchActorJSON() {

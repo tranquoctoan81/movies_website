@@ -53,10 +53,10 @@
                     <td><textarea style="width:200px;height:41px">{{this.idTrailer}}</textarea></td>
                     <td><textarea style="width:180px;height:41px">{{this.slug}}</textarea></td>
                     <td><textarea style="width:50px;height:61px">{{this.year}}</textarea></td>
-                    <td><a class="btn" id="delete-movie" data-id="{{this.id}}" href="">Xóa</a></td>
+                    <td><a class="btn" id="delete-movie" data-id="{{this.movieID}}" href="">Xóa</a></td>
                     <td>
                         <a href="/admin/{{this.slug}}/update" class="btn" id="update-movie"
-                            data-id="{{this.id}}">Sửa</a>
+                            data-id="{{this.movieID}}">Sửa</a>
                     </td>
                 </tr>
                 {{/each}}

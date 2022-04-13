@@ -25,46 +25,6 @@ const closeDB = function () {
     });
 };
 
-// getAllUser = function (callbackQuery) {
-//     connect();
-//     connection.query('SELECT * FROM film', function (err, result, fields) {
-//         if (!err) {
-//             callbackQuery(result);
-//         } else {
-//             console.log(err);
-//         }
-//     });
-// };
-// getId = function (callbackQuery) {
-//     connect();
-//     connection.query('SELECT id FROM film ', function (err, result, fields) {
-//         if (!err) {
-//             callbackQuery(result);
-//         } else {
-//             console.log(err);
-//         }
-//     });
-// };
-// getUser = function (slug, callbackQuery) {
-//     connect();
-//     connection.query('"SELECT * FROM film WHERE" slug =' + slug + ' "', function (err, result, fields) {
-//         if (!err) {
-//             callbackQuery(result);
-//         } else {
-//             console.log(err);
-//         }
-//     });
-// };
-// getMovieItem = function (callbackQuery) {
-//     connect();
-//     connection.query('SELECT * FROM film ', function (err, result, fields) {
-//         if (!err) {
-//             callbackQuery(result);
-//         } else {
-//             console.log(err);
-//         }
-//     });
-// };
 module.exports = {
     // getAllUser,
     // getUser,

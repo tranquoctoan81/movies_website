@@ -31,6 +31,19 @@ function cookieJwtAuth(req, res, next) {
         }
     })
 }
+function getUserName(req, res, next) {
+    const token = req.cookies.token
+    if (!token) {
+        next()
+    }
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, data) => {
+        if (err) next()
+        else {
+            req.username = data.username
+            next()
+        }
+    })
+}
 
 
 function authToken(req, res, next) {
@@ -42,6 +55,18 @@ function authToken(req, res, next) {
         if (err) return res.status(400).json({ message: 'Lỗi Token' })
         next()
     })
+}
+function getUserID(req, res, next) {
+    if (req.username) {
+        connect();
+        connection.query("SELECT * FROM users WHERE username = ?", req.username, function (err, result, fields) {
+            req.userID = result[0].usersID
+            next()
+        });
+    }
+    else {
+        next()
+    }
 }
 
 
@@ -104,5 +129,7 @@ module.exports = {
     cookieJwtAuth,
     checkAdmin,
     cookieLogin,
-    updateViews
+    updateViews,
+    getUserID,
+    getUserName
 };

@@ -16,6 +16,7 @@ app.use(express.static(path.join(__dirname, 'app/public')));
 app.use('/admin/', express.static(path.join(__dirname, 'app/public')));
 app.use('/danh-sach/', express.static(path.join(__dirname, 'app/public')));
 app.use('/admin/:slug', express.static(path.join(__dirname, 'app/public')));
+app.use('/:slug', express.static(path.join(__dirname, 'app/public')));
 app.use('/year/:year', express.static(path.join(__dirname, 'app/public')));
 app.use('/update-info/:name', express.static(path.join(__dirname, 'app/public')));
 app.use('/country/:country', express.static(path.join(__dirname, 'app/public')));

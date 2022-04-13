@@ -60,17 +60,76 @@ class adminController {
         })
     }
 
+    // deleteMovie(req, res, next) {
+    //     const id = req.params.id
+    //     connect();
+    //     connection.query("DELETE FROM movie WHERE movieID = ?", id, function (err, data, fields) {
+    //         if (!err) {
+    //             res.redirect('back')
+    //         } else {
+    //             console.log(err);
+    //         }
+    //     });
+    // }
+
     deleteMovie(req, res, next) {
         const id = req.params.id
         connect();
-        connection.query("DELETE FROM movie WHERE id = ?", id, function (err, data, fields) {
-            if (!err) {
+        connection.query("DELETE FROM users_movie WHERE users_movie.movieID = ?", id, function (err, data, fields) {
+            if (err) {
                 res.redirect('back')
+                console.log(err)
             } else {
-                console.log(err);
+                connection.query("DELETE FROM movie_actors WHERE movie_actors.movieID = ?", id, function (err, data, fields) {
+                    if (err) {
+                        res.redirect('back')
+                        console.log(err)
+                    } else {
+                        connection.query("DELETE FROM production_country WHERE production_country.movieID = ?", id, function (err, data, fields) {
+                            if (err) {
+                                res.redirect('back')
+                                console.log(err)
+                            } else {
+                                connection.query("DELETE FROM movie_category WHERE movie_category.movieID = ?", id, function (err, data, fields) {
+                                    if (err) {
+                                        res.redirect('back')
+                                        console.log(err)
+                                    } else {
+                                        connection.query("DELETE FROM movie WHERE movieID = ?", id, function (err, data, fields) {
+                                            if (!err) {
+                                                res.redirect('back')
+                                            } else {
+                                                console.log(err)
+                                            }
+                                        })
+                                    }
+                                })
+                            }
+                        })
+
+                    }
+                })
             }
-        });
+        })
     }
+    // deleteMovie(req, res, next) {
+    //     const id = req.params.id
+    //     connect();
+    //     connection.query("DELETE FROM users_movie WHERE users_movie.movieID = ?", id, function (err, data, fields) {
+    //         if (err) {
+    //             res.redirect('back')
+    //             console.log(err)
+    //         } else {
+    //             connection.query("DELETE FROM movie WHERE movieID = ?", id, function (err, data, fields) {
+    //                 if (!err) {
+    //                     res.redirect('back')
+    //                 } else {
+    //                     console.log(err)
+    //                 }
+    //             })
+    //         }
+    //     })
+    // }
 
     //[DELETE] /admin/handle-form-action
     handleFormAction(req, res) {

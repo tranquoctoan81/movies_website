@@ -37,7 +37,7 @@
             </div>
         </div>
     </div>
-    <div class="hot-series-movie">
+    <div id="xemnhieu" class="hot-series-movie">
         <div class="series-movie">
             <div class="series-movie-left tab-movie">
                 <div class="series-movie-title">
@@ -45,6 +45,16 @@
                 </div>
                 <div class="series-movie-content">
                     <div class="series-movie-content-next series_odd_movie">
+
+                    </div>
+                </div>
+            </div>
+            <div class="series-movie-right tab-movie">
+                <div class="series-movie-title">
+                    <h3>PHIM GỢI Ý</h3>
+                </div>
+                <div class="series-movie-content">
+                    <div class="series-movie-content-next series_recommende_movie">
 
                     </div>
                 </div>
@@ -107,5 +117,32 @@
                     `
             })
             document.querySelector('.series_odd_movie').innerHTML = hbsO.join('')
+        });
+
+
+    const urlReco = 'http://localhost:3000/json-series-recommende/'
+    fetch(urlReco)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (seriess) {
+            var hbsReco = seriess.map(function (movieItem) {
+                return `
+                    <div class="moninated-content-item">
+                        <div class="thumbnail">
+                            <a href="${movieItem.slug}"><img src="${movieItem.linkImage}" alt=""></a>
+                        </div>
+                        <a href="${movieItem.slug}" class="content">
+                            <h2 class="title">${movieItem.name}</h2>
+                            <h5 class="author">Lượt Xem: ${movieItem.lượt_xem}</h5 >
+                        </a >
+                        <div class="practice">
+                            <i id="star" class="fas fa-star"></i>
+                            <span>HOT</span>
+                        </div>
+                    </div >
+                    `
+            })
+            document.querySelector('.series_recommende_movie').innerHTML = hbsReco.join('')
         });
 </script>

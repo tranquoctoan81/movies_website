@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { cookieJwtAuth, updateViews } = require('../../middleware/basicAuth')
+const { cookieJwtAuth, updateViews, getUserID, getUserName } = require('../../middleware/basicAuth')
 
 const movieController = require('../controllers/MovieControllers');
 
 // router.get('/connect/getId', movieController.movieGetId);
+router.post('/appreciate', cookieJwtAuth, getUserID, movieController.appreciate)
 router.get('/update-info/:username', movieController.userUpdateInfo)
 router.put('/update-info/handle/:username', movieController.userUpdateHandle)
 router.get('/search', movieController.search);
@@ -19,6 +20,7 @@ router.get('/json-desc', movieController.jsonDesc);
 router.get('/json-category', movieController.jsonCategory);
 router.get('/json-country', movieController.jsonCountry);
 router.get('/json-series-old', movieController.jsonMovieHot);
+router.get('/json-series-recommende', getUserName, getUserID, movieController.jsonRecommendedMovies);
 router.get('/json-actors', movieController.jsonActors);
 router.get('/create', movieController.create);
 router.get('/before', movieController.before);

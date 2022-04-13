@@ -146,6 +146,9 @@
     #container .nominated-movie {
         width: 780px;
     }
+    #create-container{
+        height: 100vh !important;
+    }
     #create-container>form {
         width: 100% !important;
     }
