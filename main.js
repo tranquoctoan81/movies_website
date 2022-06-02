@@ -1,7 +1,7 @@
 const path = require('path')
 const express = require('express') //gọi express từ thư viện vừa down
 const app = express() //express trả vê đối tượng và đại diện cho web là app
-const port = 3000 // run ở công rào
+const port = 3001 // run ở công rào
 const database = require('./app/models/database'); //connect mysql
 const handlebars = require('express-handlebars')
 const methodOverride = require('method-override')

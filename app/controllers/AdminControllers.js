@@ -16,7 +16,7 @@ class adminController {
 
     movieManager(req, res) {
         connect();
-        connection.query('SELECT movie.*, GROUP_CONCAT(category.name) AS cat FROM movie LEFT JOIN movie_category ON movie.movieID = movie_category.movieID LEFT JOIN category ON category.categoryID = movie_category.categoryID GROUP BY movie.name', function (err, movie, fields) {
+        connection.query('SELECT movie.*, GROUP_CONCAT(category.name) AS cat FROM movie LEFT JOIN movie_category ON movie.movieID = movie_category.movieID LEFT JOIN category ON category.categoryID = movie_category.categoryID GROUP BY movie.name ORDER BY movie.create_Date DESC', function (err, movie, fields) {
             if (!err) {
                 res.render('admin/movie', { movie });
             } else {

@@ -148,16 +148,29 @@ class MovieController {
         if (req.userID) {
             connection.query('SELECT appreciate.movieID, COUNT(appreciate.movieID) as TONGLUOTDANHGIA FROM appreciate WHERE appreciate.usersID = ? GROUP BY appreciate.movieID ORDER BY TONGLUOTDANHGIA DESC LIMIT 1', req.userID, function (err, data, fields) {
                 if (!err) {
-                    connection.query('SELECT movie_category.categoryID as cate FROM movie_category LEFT JOIN category ON category.categoryID = movie_category.categoryID WHERE movie_category.movieID = ?', data[0].movieID, (err, data1, fields) => {
-                        let idCate = []
-                        data1.map(item => {
-                            idCate.push(JSON.stringify(item.cate))
+                    if (data.length > 0) {
+                        connection.query('SELECT movie_category.categoryID as cate FROM movie_category LEFT JOIN category ON category.categoryID = movie_category.categoryID WHERE movie_category.movieID = ?', data[0].movieID, (err, data1, fields) => {
+                            let idCate = []
+                            data1.map(item => {
+                                idCate.push(JSON.stringify(item.cate))
+                            })
+                            const newData = `(${idCate.toString()})`
+                            connection.query(`SELECT movie.*, COUNT(users_movie.movieID) AS lượt_xem FROM movie LEFT JOIN movie_category ON movie_category.movieID = movie.movieID LEFT OUTER JOIN users_movie ON movie.movieID = users_movie.movieID WHERE movie_category.categoryID IN ${newData} GROUP BY movie.movieID`, (arr, movie) => {
+                                res.json(movie)
+                            })
                         })
-                        const newData = `(${idCate.toString()})`
-                        connection.query(`SELECT movie.*, COUNT(users_movie.movieID) AS lượt_xem FROM movie LEFT JOIN movie_category ON movie_category.movieID = movie.movieID LEFT OUTER JOIN users_movie ON movie.movieID = users_movie.movieID WHERE movie_category.categoryID IN ${newData} GROUP BY movie.movieID`, (arr, movie) => {
-                            res.json(movie)
+                    } else {
+                        connection.query('SELECT movie_category.categoryID as cate FROM movie_category LEFT JOIN category ON category.categoryID = movie_category.categoryID WHERE movie_category.movieID = 3', (err, data1, fields) => {
+                            let idCate = []
+                            data1.map(item => {
+                                idCate.push(JSON.stringify(item.cate))
+                            })
+                            const newData = `(${idCate.toString()})`
+                            connection.query(`SELECT movie.*, COUNT(users_movie.movieID) AS lượt_xem FROM movie LEFT JOIN movie_category ON movie_category.movieID = movie.movieID LEFT OUTER JOIN users_movie ON movie.movieID = users_movie.movieID WHERE movie_category.categoryID IN ${newData} GROUP BY movie.movieID`, (arr, movie) => {
+                                res.json(movie)
+                            })
                         })
-                    })
+                    }
                 } else {
                     console.log(err);
                 }

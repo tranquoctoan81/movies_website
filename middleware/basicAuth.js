@@ -75,23 +75,15 @@ function updateViews(req, res, next) {
     connection.query("SELECT * FROM users WHERE username = ?", req.username, function (err, result, fields) {
         const userID = result[0].usersID
         let slug = req.params.slug
-        // let moviesID
-        // Object.keys(slug).forEach(function (key) {
-        //     return slug = slug[key]
-        // })
-        if (slug === 'favicon.ico') {
-            next()
-        } else {
-            connection.query("SELECT * FROM movie WHERE movie.slug = ? ", slug, function (err, data, fields) {
-                if (data) {
-                    moviesID = data[0].movieID
-                    connect();
-                    connection.query("INSERT INTO users_movie SET ?", { movieID: moviesID, usersID: userID }, (err, result) => {
-                        if (err) console.log(err)
-                    })
-                }
-            })
-        }
+        connection.query("SELECT * FROM movie WHERE movie.slug = ? ", slug, function (err, data, fields) {
+            if (data) {
+                moviesID = data[0].movieID
+                connect();
+                connection.query("INSERT INTO users_movie SET ?", { movieID: moviesID, usersID: userID }, (err, result) => {
+                    if (err) console.log(err)
+                })
+            }
+        })
         next()
     });
 }

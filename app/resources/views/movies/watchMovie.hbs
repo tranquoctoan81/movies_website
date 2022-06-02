@@ -1,7 +1,7 @@
-<div id="fb-root"></div>
+{{!-- <div id="fb-root"></div>
 <script async defer crossorigin="anonymous"
     src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=589034595884825&autoLogAppEvents=1"
-    nonce="fDGgHmm0"></script>
+    nonce="fDGgHmm0"></script> --}}
 <div style="background-color:#1b2d3c" class="wrapper">
     {{#each arr}}
     <div class="container">
@@ -106,9 +106,9 @@
             </div>
             {{!-- <div style="display:inline-block;text-align:center;width:100%" class="fb-comments"
                 data-href="http://localhost:3000" data-width="" data-numposts="5"></div> --}}
-            <div style="display:inline-block;text-align:center;width:100%" class="fb-comments"
-                data-href="http://localhost:3000/{{this.movieID}}" data-width="" data-numposts="5">
-            </div>
+            {{!-- <div style="display:inline-block;text-align:center;width:100%" class="fb-comments"
+                data-href="http://localhost:3000/ " data-width="" data-numposts="5">
+            </div> --}}
         </div>
     </div>
 
@@ -143,6 +143,10 @@
             icon.onmouseover = function (e) {
                 icon.src = 'https://biphim.co/rating2/images/star-on.png';
                 handleOnStar(icon_id)
+            };
+            icon.onmouseleave = function (e) {
+                icon.src = 'https://biphim.co/rating2/images/star-off.png';
+
             };
             icon.onclick = (e) => {
                 e.preventDefault();

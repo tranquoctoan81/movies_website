@@ -72,7 +72,7 @@
     })
 
     const moninatedContent = document.getElementById('moninated-content');
-    const urlD = `http://localhost:3000/json-desc`
+    const urlD = `${URL_ORIGIN}json-desc`
     fetch(urlD)
         .then(function (response) {
             return response.json();
@@ -93,7 +93,7 @@
             moninatedContent.innerHTML = hbs.join('')
         });
 
-    const urlO = 'http://localhost:3000/json-series-old'
+    const urlO = `${URL_ORIGIN}json-series-old`
     fetch(urlO)
         .then(function (response) {
             return response.json();
@@ -120,7 +120,7 @@
         });
 
 
-    const urlReco = 'http://localhost:3000/json-series-recommende/'
+    const urlReco = `${URL_ORIGIN}json-series-recommende/`
     fetch(urlReco)
         .then(function (response) {
             return response.json();
@@ -134,7 +134,6 @@
                         </div>
                         <a href="${movieItem.slug}" class="content">
                             <h2 class="title">${movieItem.name}</h2>
-                            <h5 class="author">Lượt Xem: ${movieItem.lượt_xem}</h5 >
                         </a >
                         <div class="practice">
                             <i id="star" class="fas fa-star"></i>
